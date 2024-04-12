@@ -50,6 +50,7 @@ def repopulate(field: Field, x: int, y: int):
         attempt += 1
         print(f"Repopulation attempt {attempt}, there were {count} mines")
 
+
 def population_check(field: Field, x: int, y: int) -> bool:
     """
     :return: True if the mine is in a horrible place
@@ -113,8 +114,8 @@ def interact(board: Board, field: Field, flags: Field, x: int, y: int, checked: 
         return True
     surrounding = count_mines(field, x, y)
     set_index(board, x, y, surrounding)
-    # Exposed tiles can be interacted with if there are the correct number of flags
-    if get_index(board, x, y, -1) != -1:
+    # Exposed tiles can be interacted with if there are the correct number of flags and if the tile wasn't recursively exposed
+    if get_index(board, x, y, -1) != -1 and len(checked) <= 1:
         # Flags are treated as discovered mines
         surrounding -= count_mines(flags, x, y)
     explode = False
