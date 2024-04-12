@@ -1,7 +1,4 @@
 import random
-from typing import TypeVar
-
-# T = TypeVar("T")
 
 Point = (int, int)
 Board = list[list[int]]
@@ -36,12 +33,13 @@ def populate_field(field: Field, mines: int):
 def repopulate(field: Field, x: int, y: int):
     attempt = 0
     count = count_mines(field, x, y, True)
-    while count != 0:
+    while count != 0 and attempt < 500:
         set_index(field, x-1, y+1, False)
         set_index(field, x, y+1, False)
         set_index(field, x+1, y+1, False)
         set_index(field, x-1, y, False)
         set_index(field, x, y, False)
+        set_index(field, x+1, y, False)
         set_index(field, x+1, y-1, False)
         set_index(field, x, y-1, False)
         set_index(field, x-1, y-1, False)
