@@ -5,10 +5,15 @@ import minesweep
 from minesweep import *
 
 difficulties = {
-    "easy": (8, 8, 15)
+    "easy": (6, 12, 10)
+    "medium": (10, 20, 35)
+    "hard": (13, 27, 75)
 }
 
-config = difficulties["easy"]
+difficulty = input()
+while difficulty not in difficulies:
+    difficulty = input()
+config = difficulties[difficulty]
 width, height = config[0], config[1]
 minesweep.width, minesweep.height = config[0], config[1]
 
